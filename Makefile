@@ -129,12 +129,13 @@ python: asdf
 	@source $(shell brew --prefix asdf)/libexec/asdf.sh && pip install pipx;
 
 
-#: install node.js 16 and 18
+#: install two latest LTS node versions
 node: asdf
 	@log section "Installing node runtimes..."
 	@asdf plugin list | grep -q nodejs || asdf plugin add nodejs
 
-	@NODE_VERSIONS=("18" "16"); \
+	@NODE_VERSIONS="$(shell asdf list all nodejs lts-| uniq | tail -n2 | xargs)"; \
+	log "Installing Node.js versions $$PY_VERSIONS..."; \
 	for NODE_VERSION in $${NODE_VERSIONS[@]}; do \
   	asdf install nodejs latest:$$NODE_VERSION; \
 	done
