@@ -14,7 +14,8 @@ Take anything you want, but at your own risk.
 ## Packages Overview
 
 - Latest Fish shell, Oh-my-fish framework, and bobthefish theme
-- Latest Python and Node.js, managed by asdf
+- Latest three Python versions & Poetry, managed by asdf
+- Latest and Node.js,
 - Latest Rust and Golang, managed by Homebrew
 - [Homebrew](https://brew.sh) (packages: [Brewfile](./install/Brewfile))
 - [homebrew-cask](https://github.com/Homebrew/homebrew-cask) (packages: [Caskfile](./install/Caskfile))

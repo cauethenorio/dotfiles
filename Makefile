@@ -107,11 +107,12 @@ asdf:
 	@is-executable asdf || brew install asdf
 
 
-#: install python 3.9, 3.10 and 3.11
+#: install three latest python versions
 python: asdf
 	@log section "Installing python runtimes..."
 	@asdf plugin list | grep -q python || asdf plugin add python
-	@PY_VERSIONS=("3.9" "3.10" "3.11"); \
+	@PY_VERSIONS="$(shell asdf list all python 3|grep -v dev| grep -v 'a' | sed 's/\.[0-9]*$$//' | uniq | tail -n3 | xargs)"; \
+	log "Installing python versions $$PY_VERSIONS..."; \
 	for PY_VERSION in $${PY_VERSIONS[@]}; do \
   	asdf install python latest:$$PY_VERSION; \
 	done
