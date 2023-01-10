@@ -29,6 +29,12 @@ define link_config
 endef
 
 
+.sudo:
+	@sudo -v
+	@# background job to keep the sudo command active in the background avoiding additional prompts
+	@while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
+
+
 #: list all available commands
 list:
 	@grep -B1 -E "^[a-zA-Z0-9_-]+\:([^\=]|$$)" Makefile \
@@ -39,26 +45,11 @@ list:
 
 
 #: install everything
-install: sudo core-macos python node rust packages link
+install: .sudo core-macos python node rust packages link
 
 
 #: install core tools as brew, git and fish shell
 core-macos: brew git fish
-
-
-#: install REMOVE-ME
-stow-macos: brew
-	is-executable stow || brew install stow
-
-
-sudo:
-	@sudo -v
-	@# background job to keep the sudo command active in the background avoiding additional prompts
-	@while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
-
-
-#: install brew, cask and rust packages
-packages: brew-packages cask-apps rust-packages
 
 
 #: install homebrew
@@ -67,12 +58,18 @@ brew:
 	@is-executable brew || curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh | bash
 
 
+#: install git
+git: brew
+	@log section "Ensuring git is installed..."
+	@is-executable git || brew install git git-extras
+
+
 #: install fish shell, oh-my-fish framework and bobthefish theme
 fish: FISH_BIN=$(HOMEBREW_PREFIX)/bin/fish
 fish: SHELLS=/etc/shells
 fish: OMF_INSTALL_FILE := $(shell mktemp -t omf-install)
 fish: OMF_CONFIG_DIR=$(XDG_CONFIG_HOME)/omf
-fish: sudo git brew
+fish: .sudo git brew
 	@log section "Installing fish shell..."
 	@log "Restoring fish shell configuration files..."
 	@$(call link_config,fish)
@@ -99,10 +96,9 @@ fish: sudo git brew
 	fi
 
 
-#: install git
-git: brew
-	@log section "Ensuring git is installed..."
-	@is-executable git || brew install git git-extras
+#: install REMOVE-ME
+stow-macos: brew
+	is-executable stow || brew install stow
 
 
 #: install asdf
@@ -144,6 +140,10 @@ rust: brew
 	@log section "Installing rust..."
 	@brew install rustup
 	@rustup-init --no-modify-path -y
+
+
+#: install brew, cask and rust packages
+packages: brew-packages cask-apps rust-packages
 
 
 #: install brew packages
