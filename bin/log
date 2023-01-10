@@ -1,0 +1,47 @@
+#!/usr/bin/env bash
+
+# Set the default message type to "info"
+MESSAGE_TYPE="info"
+
+NC="\033[0m" # No color
+RED="\033[0;31m"
+YELLOW="\033[0;33m"
+CYAN="\033[0;36m"
+GREEN="\033[0;32m"
+
+
+# Check the number of arguments
+if [ $# -eq 1 ]; then
+  # Only one argument was provided, so use the default message type
+  MESSAGE=$1
+elif [ $# -eq 2 ]; then
+  # Two arguments were provided, so use the specified message type
+  MESSAGE_TYPE=$1
+  MESSAGE=$2
+else
+  # Invalid number of arguments
+  echo "Error: Invalid number of arguments"
+  exit 1
+fi
+
+# Set the text color based on the message type
+case $MESSAGE_TYPE in
+  error)
+    PREFIX="$RED"
+    ;;
+  warning)
+    PREFIX="$YELLOW"
+    ;;
+  section)
+    PREFIX="$CYAN"
+    ;;
+  success)
+    PREFIX="$GREEN"
+    ;;
+  *)
+    PREFIX="$NC  ➡ "
+    ;;
+esac
+
+# Print the message in the specified color
+echo -e "${PREFIX}${MESSAGE}${NC}"

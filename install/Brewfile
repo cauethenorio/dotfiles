@@ -1,0 +1,23 @@
+# Extendable version manager with support for Ruby, Node.js, Erlang & more"
+# https://asdf-vm.com/
+brew "asdf"
+
+
+brew "autojump"
+brew "coreutils"
+brew "curl"
+brew "diff-so-fancy"
+brew "fish"
+brew "fswatch"
+brew "golang"
+brew "httpie"
+brew "jq"
+brew "python"
+brew "readline"
+brew "rsync"
+brew "rustup"
+brew "sqlite"
+brew "ssh-copy-id"
+brew "stow"
+brew "tmux"
+brew "wget"
