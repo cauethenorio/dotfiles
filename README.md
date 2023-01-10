@@ -13,13 +13,19 @@ Take anything you want, but at your own risk.
 
 ## Packages Overview
 
-- Latest Fish shell, Oh-my-fish framework, and bobthefish theme
-- Latest three Python versions & Poetry, managed by asdf
-- Latest and Node.js,
-- Latest Rust and Golang, managed by Homebrew
-- [Homebrew](https://brew.sh) (packages: [Brewfile](./install/Brewfile))
-- [homebrew-cask](https://github.com/Homebrew/homebrew-cask) (packages: [Caskfile](./install/Caskfile))
-- Latest Git, GNU coreutils, curl
+- 🐠 [Fish Shell](https://fishshell.com/)
+  - Is set as default shell with sane defaults ([fish.config](./config/fish/.config/fish/config.fish)) 🚀
+  - Installed [Oh-my-fish framework](https://github.com/oh-my-fish/oh-my-fish)
+  - Installed [bobthefish theme](https://github.com/oh-my-fish/theme-bobthefish)
+- 🐍 Python
+  - Latest three major [Python](https://www.python.org/) versions
+  - [Poetry](https://python-poetry.org/) dependency manager, managed by [asdf](https://asdf-vm.com/)
+  - [Pipx](https://github.com/pypa/pipx) (packages: [pipx-libs.txt](./install/pipx-libs.txt))
+- 🦏 Latest two latest LTS [node](https://nodejs.org/en/) versions, managed by [asdf](https://asdf-vm.com/)
+- 🤘 Latest [Rust](https://www.rust-lang.org/) and [Golang](https://go.dev/), managed by Homebrew
+- 🍺 [Homebrew](https://brew.sh) (packages: [Brewfile](./install/Brewfile))
+- 📱 [homebrew-cask](https://github.com/Homebrew/homebrew-cask) (packages: [Caskfile](./install/Caskfile))
+- 🧩 Latest Git, GNU coreutils, curl
 
 ## Installation
 

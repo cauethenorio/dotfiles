@@ -119,10 +119,14 @@ python: asdf
 	@LATEST_PY=$(shell asdf list python| sort -V | tail -n1 | tr -d ' ' | tr -d '*'); \
 		log "Python $$LATEST_PY set as global"; \
 		asdf global python $$LATEST_PY;
+
 	@log "Installing python poetry..."
 	@asdf plugin list | grep -q poetry || @asdf plugin-add poetry https://github.com/asdf-community/asdf-poetry.git
 	@asdf install poetry latest:
 	@asdf global poetry $(shell asdf list poetry | tail -n1 | tr -d  ' ' | tr -d '*')
+
+	@log "Installing pipx..."
+	@source $(shell brew --prefix asdf)/libexec/asdf.sh && pip install pipx;
 
 
 #: install node.js 16 and 18
@@ -148,7 +152,7 @@ rust: brew
 
 
 #: install brew, cask and rust packages
-packages: brew-packages cask-apps rust-packages
+packages: brew-packages cask-apps rust-packages pipx-packages
 
 
 #: install brew packages
@@ -168,3 +172,8 @@ cask-apps: brew
 rust-packages: rust
 	~/.cargo/bin/cargo install $(shell cat install/Rustfile)
 
+
+#: install python pipx packages
+pipx-packages: python
+	@source $(shell brew --prefix asdf)/libexec/asdf.sh; \
+	cat ./install/pipx-libs.txt | PATH=$$PATH:~/.local/bin xargs -n1 pipx install;

@@ -75,15 +75,17 @@ set -x GOPATH ~/dev/golang
 
 
 # rust
+
 # Prepending path in case a system-installed rustc needs to be overridden
 [ -d ~/.cargo/bin ]; and fish_add_path --prepend --path ~/.cargo/bin
 
 
 # poetry
-set -gx PATH $PATH ~/.poetry/bin
 
+set -gx PATH $PATH ~/.poetry/bin
 [ -f (brew --prefix)/share/fish/vendor_completions.d/poetry.fish ]; and source (brew --prefix)/share/fish/vendor_completions.d/poetry.fish
 
 
-# kill adobe zombie processes
-alias kill-adobe="ps aux|grep -v 'grep'| grep 'Adobe'|awk '{ print  $2 }'|xargs kill -9"
+# pipx
+
+[ -d ~/.local/bin ]; and fish_add_path --path ~/.local/bin
