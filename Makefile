@@ -118,6 +118,10 @@ python: asdf
 	@LATEST_PY=$(shell asdf list python| sort -V | tail -n1 | tr -d ' ' | tr -d '*'); \
 		log "Python $$LATEST_PY set as global"; \
 		asdf global python $$LATEST_PY;
+	@log "Installing python poetry..."
+	@asdf plugin list | grep -q poetry || @asdf plugin-add poetry https://github.com/asdf-community/asdf-poetry.git
+	@asdf install poetry latest:
+	@asdf global poetry $(shell asdf list poetry | tail -n1 | tr -d  ' ' | tr -d '*')
 
 
 #: install node.js 16 and 18
