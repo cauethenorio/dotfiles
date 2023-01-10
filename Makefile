@@ -105,13 +105,13 @@ git: brew
 	@is-executable git || brew install git git-extras
 
 
-# install asdf
+#: install asdf
 asdf:
 	@log section "Installing asdf..."
 	@is-executable asdf || brew install asdf
 
 
-# install python
+#: install python 3.9, 3.10 and 3.11
 python: asdf
 	@log section "Installing python runtimes..."
 	@asdf plugin list | grep -q python || asdf plugin add python
@@ -124,7 +124,7 @@ python: asdf
 		asdf global python $$LATEST_PY;
 
 
-# install node.js
+#: install node.js 16 and 18
 node: asdf
 	@log section "Installing node runtimes..."
 	@asdf plugin list | grep -q nodejs || asdf plugin add nodejs
@@ -139,27 +139,27 @@ node: asdf
 		asdf global nodejs $$LATEST_NODE;
 
 
-# install rust
+#: install rust
 rust: brew
 	@log section "Installing rust..."
 	@brew install rustup
 	@rustup-init --no-modify-path -y
 
 
-# install brew packages
+#: install brew packages
 brew-packages: brew
 	@log section "Installing all brew formulas from the Brewfile..."
 	@brew bundle --no-lock --file=$(DOTFILES_DIR)/install/Brewfile || true
 
 
-# install cask apps
+#: install cask apps
 cask-apps: brew
 	@log section "Installing apps from the Caskfile..."
 	@brew bundle --file=$(DOTFILES_DIR)/install/Caskfile || true
 	@xattr -d -r com.apple.quarantine ~/Library/QuickLook
 
 
-# install rust packages
+#: install rust packages
 rust-packages: rust
 	~/.cargo/bin/cargo install $(shell cat install/Rustfile)
 
