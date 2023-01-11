@@ -4,35 +4,20 @@ DOTFILES_DIR := $(shell dirname $(realpath $(firstword $(MAKEFILE_LIST))))
 HOMEBREW_PREFIX := $(shell bin/is-supported bin/is-arm64 /opt/homebrew /usr/local)
 PATH := $(HOMEBREW_PREFIX)/bin:$(DOTFILES_DIR)/bin:$(PATH)
 export XDG_CONFIG_HOME = $(HOME)/.config
-export STOW_DIR = $(DOTFILES_DIR)
 export ACCEPT_EULA=Y
 
 .PHONY: test
-
-define link_config
-	@# backup any existing configuration file (add .bkp extension)
-	@stow --simulate \
-		-t $(HOME) \
-		-d config \
-		$1 \
-		2>&1 >/dev/null \
-		| grep "existing target" \
-		| cut -d ':' -f 2 \
-		| xargs -n1 \
-		| xargs -I {} mv $(HOME)/{} $(HOME)/{}.bkp
-
-	@stow \
-		-t $(HOME) \
-		-d config \
-		$1
-
-endef
 
 
 .sudo:
 	@sudo -v
 	@# background job to keep the sudo command active in the background avoiding additional prompts
 	@while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
+
+
+.stow: brew
+	@log section "Ensuring stow is installed..."
+	@is-executable stow || brew install stow
 
 
 #: list all available commands
@@ -59,8 +44,9 @@ brew:
 
 
 #: install git
-git: brew
+git: brew .stow
 	@log section "Ensuring git is installed..."
+	@link-config "git"
 	@is-executable git || brew install git git-extras
 
 
@@ -69,10 +55,10 @@ fish: FISH_BIN=$(HOMEBREW_PREFIX)/bin/fish
 fish: SHELLS=/etc/shells
 fish: OMF_INSTALL_FILE := $(shell mktemp -t omf-install)
 fish: OMF_CONFIG_DIR=$(XDG_CONFIG_HOME)/omf
-fish: .sudo git brew
+fish: .sudo git brew .stow
 	@log section "Installing fish shell..."
 	@log "Restoring fish shell configuration files..."
-	@$(call link_config,fish)
+	@link-config "fish"
 
 	@log "Ensuring fish shell is installed..."
 	@is-executable fish || brew install fish
@@ -89,16 +75,13 @@ fish: .sudo git brew
 
 	@log "Ensuring the oh-my-fish framework is installed..."
 	@# https://github.com/oh-my-fish/oh-my-fish
+	@link-config "omf"
+
 	@if ! fish -c "omf" >/dev/null 2>&1; then \
-  	echo "  Installing oh-my-fish framework..."; \
+		log "Installing oh-my-fish framework..."; \
 		curl -fsSL https://get.oh-my.fish -o $(OMF_INSTALL_FILE); \
 		fish $(OMF_INSTALL_FILE) --noninteractive --yes; \
 	fi
-
-
-#: install REMOVE-ME
-stow-macos: brew
-	is-executable stow || brew install stow
 
 
 #: install asdf
@@ -152,7 +135,7 @@ rust: brew
 	@rustup-init --no-modify-path -y
 
 
-#: install brew, cask and rust packages
+#: install brew, cask, rust and pipx packages
 packages: brew-packages cask-apps rust-packages pipx-packages
 
 

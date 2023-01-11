@@ -10,18 +10,19 @@ Take anything you want, but at your own risk.
 - Updated macOS defaults
 - Well-organized and easy to customize
 - Supports both Apple Silicon (M1) and Intel chips
+- Tested on Ventura 13.1
 
 ## Packages Overview
 
 - 🐠 [Fish Shell](https://fishshell.com/)
-  - Is set as default shell with sane defaults ([fish.config](./config/fish/.config/fish/config.fish)) 🚀
+  - Default shell with sane defaults ([fish.config](./config/fish/.config/fish/config.fish)) 🚀
   - Installed [Oh-my-fish framework](https://github.com/oh-my-fish/oh-my-fish)
   - Installed [bobthefish theme](https://github.com/oh-my-fish/theme-bobthefish)
-- 🐍 Python
-  - Latest three major [Python](https://www.python.org/) versions
+- 🐍 [Python](https://www.python.org/)
+  - Latest three major versions
   - [Poetry](https://python-poetry.org/) dependency manager, managed by [asdf](https://asdf-vm.com/)
   - [Pipx](https://github.com/pypa/pipx) (packages: [pipx-libs.txt](./install/pipx-libs.txt))
-- 🦏 Latest two latest LTS [node](https://nodejs.org/en/) versions, managed by [asdf](https://asdf-vm.com/)
+- 🦏 Latest two [Node.js](https://nodejs.org/en/) LTS versions, managed by [asdf](https://asdf-vm.com/)
 - 🤘 Latest [Rust](https://www.rust-lang.org/) and [Golang](https://go.dev/), managed by Homebrew
 - 🍺 [Homebrew](https://brew.sh) (packages: [Brewfile](./install/Brewfile))
 - 📱 [homebrew-cask](https://github.com/Homebrew/homebrew-cask) (packages: [Caskfile](./install/Caskfile))
@@ -44,32 +45,37 @@ The Xcode Command Line Tools includes `git` and `make` (not available on stock m
 curl -fsSL http://localhost:8000/dotfiles/remote-install.sh | bash
 ```
 
-This will clone or download, this repo to `~/.dotfiles` depending on the availability of `git`, `curl` or `wget`.
+This will clone this repo to `~/dev/dotfiles`.
 
-1. Alternatively, clone manually into the desired location:
-
-```bash
-git clone https://github.com/webpro/dotfiles.git ~/.dotfiles
+Use the [Makefile](./Makefile) to install everything [listed above](#packages-overview) with a single command as:
+```
+cd ~/dev/dotfiles
+make install
 ```
 
-Use the [Makefile](./Makefile) to install everything [listed above](#package-overview), and symlink [runcom](./runcom)
-and [config](./config) (using [stow](https://www.gnu.org/software/stow/)):
-
+Or choose what to install:
 ```bash
-cd ~/.dotfiles
+cd ~/dev/dotfiles
 make
+
+make list           list all available commands
+make install        install everything
+make core-macos     install core tools as brew, git and fish shell
+make brew           install homebrew
+make git            install git
+make fish           install fish shell, oh-my-fish framework and bobthefish theme
+make stow-macos     install REMOVE-ME
+make asdf           install asdf
+make python         install three latest python versions
+make node           install two latest LTS node versions
+make rust           install rust
+make packages       install brew, cask, rust and pipx packages
+make brew-packages  install brew packages
+make cask-apps      install cask apps
+make rust-packages  install rust packages
+make pipx-packages  install python pipx packages
 ```
 
-
-## Post-Installation
-
-- `dot dock` (set [Dock items](./macos/dock.sh))
-- `dot macos` (set [macOS defaults](./macos/defaults.sh))
-
-
-## Customize
-
-To customize the dotfiles to your likings, fork it and make sure to modify the locations above to your fork.
 
 ## Credits
 

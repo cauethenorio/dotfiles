@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+stow --simulate \
+  -t "${HOME}" \
+  -d config \
+  "$1" \
+  2>&1 >/dev/null \
+  | grep "existing target" \
+  | cut -d ':' -f 2 \
+  | xargs -n1 \
+  | xargs -I {} mv "${HOME}/{}" "${HOME}/{}.bkp"
+
+stow -t "${HOME}" -d config "$1"
