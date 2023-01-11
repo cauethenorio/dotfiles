@@ -42,7 +42,7 @@ The Xcode Command Line Tools includes `git` and `make` (not available on stock m
 1. Install this repo with `curl` available:
 
 ```bash
-curl -fsSL http://localhost:8000/dotfiles/remote-install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/cauethenorio/dotfiles/main/remote-install.sh | bash
 ```
 
 This will clone this repo to `~/dev/dotfiles`.
@@ -64,7 +64,6 @@ make core-macos     install core tools as brew, git and fish shell
 make brew           install homebrew
 make git            install git
 make fish           install fish shell, oh-my-fish framework and bobthefish theme
-make stow-macos     install REMOVE-ME
 make asdf           install asdf
 make python         install three latest python versions
 make node           install two latest LTS node versions
