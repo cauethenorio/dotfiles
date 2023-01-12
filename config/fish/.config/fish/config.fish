@@ -48,7 +48,10 @@ fish_add_path --prepend --path {$brew_prefix}/sbin
 # enable fish completion for homebrew installed formulas
 
 for script in {$brew_prefix}/share/fish/vendor_completions.d/*.fish
-	. $script
+  # avoid running docker-compose completion file when it's not available (i.e. docker wasn't executed yet)
+  if not string match -q -r "docker-compose" "$script"; or which -s "docker-compose"
+    . $script
+  end
 end
 
 

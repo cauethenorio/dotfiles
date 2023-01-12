@@ -1,6 +1,11 @@
 tap "homebrew/cask"
 tap "homebrew/cask-fonts"
 
+# Prevents your sleeping Mac from connecting to Bluetooth accessories
+# https://github.com/odlp/bluesnooze/
+cask "bluesnooze"
+
+
 cask "docker"
 cask "dropbox"
 cask "firefox"

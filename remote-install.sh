@@ -21,7 +21,7 @@ fi
 
 while true; do
     if ! are_command_line_tools_installed; then
-        echo "Complete the 'Developer Tools' installation to continue. Retrying in 5s..."
+        echo "Complete the 'Command Line Developer Tools' installation to continue. Retrying in 5s..."
         sleep 5
     else
         break
