@@ -15,7 +15,7 @@ is_executable() {
 }
 
 are_required_tools_available() {
-  is_executable "makez" && is_executable "git"
+  is_executable "make" && is_executable "git"
 }
 
 if ! are_required_tools_available; then
