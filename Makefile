@@ -30,7 +30,7 @@ list:
 
 
 #: install everything
-install: .sudo core-macos python node rust packages link
+install: .sudo core-macos python node rust packages
 
 
 #: install core tools as brew, git and fish shell
@@ -94,22 +94,22 @@ asdf:
 python: asdf
 	@log section "Installing python runtimes..."
 	@asdf plugin list | grep -q python || asdf plugin add python
-	@PY_VERSIONS="$(shell asdf list all python 3|grep -v dev| grep -v 'a' | sed 's/\.[0-9]*$$//' | uniq | tail -n3 | xargs)"; \
+	@PY_VERSIONS="$$(asdf list all python 3|grep -v dev| grep -v 'a' | sed 's/\.[0-9]*$$//' | uniq | tail -n3 | xargs)"; \
 	log "Installing python versions $$PY_VERSIONS..."; \
 	for PY_VERSION in $${PY_VERSIONS[@]}; do \
   	asdf install python latest:$$PY_VERSION; \
 	done
-	@LATEST_PY=$(shell asdf list python| sort -V | tail -n1 | tr -d ' ' | tr -d '*'); \
+	@LATEST_PY=$$(asdf list python| sort -V | tail -n1 | tr -d ' ' | tr -d '*'); \
 		log "Python $$LATEST_PY set as global"; \
 		asdf global python $$LATEST_PY;
 
 	@log "Installing python poetry..."
 	@asdf plugin list | grep -q poetry || @asdf plugin-add poetry https://github.com/asdf-community/asdf-poetry.git
 	@asdf install poetry latest:
-	@asdf global poetry $(shell asdf list poetry | tail -n1 | tr -d  ' ' | tr -d '*')
+	@asdf global poetry $$(asdf list poetry | tail -n1 | tr -d  ' ' | tr -d '*')
 
 	@log "Installing pipx..."
-	@source $(shell brew --prefix asdf)/libexec/asdf.sh && pip install pipx;
+	@source $$(brew --prefix asdf)/libexec/asdf.sh && (is-executable pipx || pip install pipx);
 
 
 #: install two latest LTS node versions
@@ -117,13 +117,13 @@ node: asdf
 	@log section "Installing node runtimes..."
 	@asdf plugin list | grep -q nodejs || asdf plugin add nodejs
 
-	@NODE_VERSIONS="$(shell asdf list all nodejs lts-| uniq | tail -n2 | xargs)"; \
+	@NODE_VERSIONS="$$(asdf list all nodejs lts-| uniq | tail -n2 | xargs)"; \
 	log "Installing Node.js versions $$PY_VERSIONS..."; \
 	for NODE_VERSION in $${NODE_VERSIONS[@]}; do \
   	asdf install nodejs latest:$$NODE_VERSION; \
 	done
 
-	@LATEST_NODE=$(shell asdf list nodejs| sort -V | tail -n1 | tr -d ' ' | tr -d '*'); \
+	@LATEST_NODE=$$(asdf list nodejs| sort -V | tail -n1 | tr -d ' ' | tr -d '*'); \
 		log "Node $$LATEST_NODE set as global"; \
 		asdf global nodejs $$LATEST_NODE;
 
@@ -154,10 +154,10 @@ cask-apps: brew
 
 #: install rust packages
 rust-packages: rust
-	~/.cargo/bin/cargo install $(shell cat install/Rustfile)
+	~/.cargo/bin/cargo install $$(cat install/Rustfile)
 
 
 #: install python pipx packages
 pipx-packages: python
-	@source $(shell brew --prefix asdf)/libexec/asdf.sh; \
+	@source $$(brew --prefix asdf)/libexec/asdf.sh; \
 	cat ./install/pipx-libs.txt | PATH=$$PATH:~/.local/bin xargs -n1 pipx install;
