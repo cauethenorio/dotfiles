@@ -9,9 +9,17 @@ GREEN="\033[0;32m"
 NC="\033[0m" # No color
 CYAN="\033[0;36m"
 
+
 is_executable() {
   type "$1" > /dev/null 2>&1
 }
+
+if ! is_executable "make" || ! is_executable "git"; then
+  sudo softwareupdate -i -a
+  xcode-select --install
+fi
+
+exit 1
 
 if is_executable "git"; then
   CMD="git clone $SOURCE $TARGET";

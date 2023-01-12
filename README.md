@@ -32,15 +32,6 @@ Take anything you want, but at your own risk.
 
 ## Installation
 
-On a sparkling fresh installation of macOS:
-
-```bash
-sudo softwareupdate -i -a
-xcode-select --install
-```
-
-The Xcode Command Line Tools includes `git` and `make` (not available on stock macOS).
-
 1. Install the repo with:
 
 ```bash
@@ -52,7 +43,7 @@ Now you can chdir to the repo dir:
 cd ~/dev/dotfiles
 ```
 
-And Use the [Makefile](./Makefile) to install everything [listed above](#packages-overview) with:
+And install everything [listed above](#packages-overview) with:
 ```bash
 make install
 ```
