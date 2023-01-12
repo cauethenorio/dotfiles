@@ -64,9 +64,7 @@ fish: .sudo git brew .stow
 	@is-executable fish || brew install fish
 
 	@log "Ensuring fish shell is available in shells list..."
-	@if ! grep -q $(FISH_BIN) $(SHELLS); then \
-		sudo append $(FISH_BIN) $(SHELLS); \
-	fi
+	@grep -qxF "$(FISH_BIN)" "$(SHELLS)" || echo "$(FISH_BIN)" | sudo tee -a "$(SHELLS)" > /dev/null
 
 	@log "Ensuring fish is the default shell..."
 	@if ! dscl . -read ~ UserShell | grep -q $(FISH_BIN); then \
