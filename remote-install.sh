@@ -19,8 +19,6 @@ if ! is_executable "make" || ! is_executable "git"; then
   xcode-select --install
 fi
 
-exit 1
-
 if is_executable "git"; then
   CMD="git clone $SOURCE $TARGET";
 else
