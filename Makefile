@@ -111,7 +111,7 @@ python: asdf brew
 		asdf global python $$LATEST_PY;
 
 	@log "Installing python poetry..."
-	@asdf plugin list | grep -q poetry || @asdf plugin-add poetry https://github.com/asdf-community/asdf-poetry.git
+	@asdf plugin list | grep -q poetry || asdf plugin-add poetry https://github.com/asdf-community/asdf-poetry.git
 	@asdf install poetry latest:
 	@asdf global poetry $$(asdf list poetry | tail -n1 | tr -d  ' ' | tr -d '*')
 
