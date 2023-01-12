@@ -8,6 +8,7 @@ RED="\033[0;31m"
 YELLOW="\033[0;33m"
 CYAN="\033[0;36m"
 GREEN="\033[0;32m"
+BLUE="\033[0;34m"
 
 
 # Check the number of arguments
@@ -27,19 +28,19 @@ fi
 # Set the text color based on the message type
 case $MESSAGE_TYPE in
   error)
-    PREFIX="$RED"
+    PREFIX="${RED}"
     ;;
   warning)
-    PREFIX="$YELLOW"
+    PREFIX="${YELLOW}"
     ;;
   section)
-    PREFIX="$CYAN"
+    PREFIX="${CYAN}"
     ;;
   success)
-    PREFIX="$GREEN"
+    PREFIX="${GREEN}"
     ;;
   *)
-    PREFIX="$NC  ➡ "
+    PREFIX="${BLUE}  ➡ "
     ;;
 esac
 
