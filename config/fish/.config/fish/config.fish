@@ -83,12 +83,6 @@ set -x GOPATH ~/dev/golang
 [ -d ~/.cargo/bin ]; and fish_add_path --prepend --path ~/.cargo/bin
 
 
-# poetry
-
-set -gx PATH $PATH ~/.poetry/bin
-[ -f (brew --prefix)/share/fish/vendor_completions.d/poetry.fish ]; and source (brew --prefix)/share/fish/vendor_completions.d/poetry.fish
-
-
 # pipx
 
 [ -d ~/.local/bin ]; and fish_add_path --path ~/.local/bin

@@ -115,6 +115,7 @@ python: asdf brew
 
 	@log "Installing python poetry..."
 	@source $$(brew --prefix asdf)/libexec/asdf.sh && pipx install poetry;
+	@PATH=$$PATH:~/.local/bin poetry completions fish > $(XDG_CONFIG_HOME)/fish/completions/poetry.fish
 
 
 #: install two latest LTS node versions
