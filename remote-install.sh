@@ -11,7 +11,7 @@ CYAN="\033[0;36m"
 
 
 is_executable() {
-  type "$1" > /dev/null 2>&1
+  bash -c "which \"$1\" > /dev/null 2>&1"
 }
 
 are_required_tools_available() {
@@ -25,7 +25,7 @@ fi
 
 while true; do
     if ! are_required_tools_available; then
-        echo "Commands 'git' or 'make' are not available. Checking again in 5 seconds..."
+        echo "Complete the 'Developer Tools' installation to continue. Retrying in 5s..."
         sleep 5
     else
         break
