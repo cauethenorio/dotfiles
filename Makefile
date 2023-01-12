@@ -110,13 +110,11 @@ python: asdf brew
 		log "Python $$LATEST_PY set as global"; \
 		asdf global python $$LATEST_PY;
 
-	@log "Installing python poetry..."
-	@asdf plugin list | grep -q poetry || asdf plugin-add poetry https://github.com/asdf-community/asdf-poetry.git
-	@asdf install poetry latest:
-	@asdf global poetry $$(asdf list poetry | tail -n1 | tr -d  ' ' | tr -d '*')
-
 	@log "Installing pipx..."
 	@source $$(brew --prefix asdf)/libexec/asdf.sh && (is-executable pipx || pip install pipx);
+
+	@log "Installing python poetry..."
+	@source $$(brew --prefix asdf)/libexec/asdf.sh && pipx install poetry;
 
 
 #: install two latest LTS node versions

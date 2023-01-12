@@ -21,8 +21,8 @@ Take anything you want, but at your own risk.
 - [asdf](https://asdf-vm.com/) language/tool version manager
 - 🐍 [Python](https://www.python.org/)
   - The three latest versions of Python, managed by [asdf](https://asdf-vm.com/)
-  - [Poetry](https://python-poetry.org/) dependency manager, managed by [asdf](https://asdf-vm.com/)
   - [Pipx](https://github.com/pypa/pipx) package runner (with some packages: [pipx-libs.txt](./install/pipx-libs.txt))
+  - [Poetry](https://python-poetry.org/) dependency and package manager, managed by [Pipx](https://github.com/pypa/pipx) due [this issue](https://github.com/python-poetry/install.python-poetry.org/issues/24)
 - 🦏 Latest two [Node.js](https://nodejs.org/en/) LTS versions, managed by [asdf](https://asdf-vm.com/)
 - 🤘 Latest [Rust](https://www.rust-lang.org/), managed by [Homebrew](https://brew.sh) (packages: [Rustfile](./install/Rustfile))
 - 🦄 Latest [Golang](https://go.dev/), managed by [Homebrew](https://brew.sh)
