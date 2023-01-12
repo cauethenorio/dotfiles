@@ -89,8 +89,17 @@ asdf:
 
 
 #: install three latest python versions
-python: asdf
-	@log section "Installing python runtimes..."
+python: asdf brew
+	@log section "Installing python versions..."
+
+	@log "Ensuring python build dependencies are installed..."
+	@# obtained from Homebrew's python formulas
+	@PY_DEPS=("mpdecimal" "openssl@1.1" "sqlite" "xz" "gdbm" "readline"); \
+	for DEP in $${PY_DEPS[@]}; do \
+	  is-brew-formula-installed "$$DEP" "$(HOMEBREW_PREFIX)" || brew install "$$DEP"; \
+	done
+
+	@log "Adding python plugin to asdf..."
 	@asdf plugin list | grep -q python || asdf plugin add python
 	@PY_VERSIONS="$$(asdf list all python 3|grep -v dev| grep -v 'a' | sed 's/\.[0-9]*$$//' | uniq | tail -n3 | xargs)"; \
 	log "Installing python versions $$PY_VERSIONS..."; \
