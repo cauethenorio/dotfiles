@@ -20,7 +20,7 @@ if ! are_command_line_tools_installed; then
 fi
 
 while true; do
-    if ! are_required_tools_available; then
+    if ! are_command_line_tools_installed; then
         echo "Complete the 'Developer Tools' installation to continue. Retrying in 5s..."
         sleep 5
     else
