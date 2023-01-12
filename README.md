@@ -28,49 +28,46 @@ Take anything you want, but at your own risk.
 - 🦄 Latest [Golang](https://go.dev/), managed by [Homebrew](https://brew.sh)
 - 🍺 [Homebrew](https://brew.sh) (packages: [Brewfile](./install/Brewfile))
 - 📱 [homebrew-cask](https://github.com/Homebrew/homebrew-cask) (packages: [Caskfile](./install/Caskfile))
+- 🔨 Bash shell [configured with the paths for the installed tools](./config/bash/.bash_profile), required by tools like PyCharm
 - 🧩 Latest Git, GNU coreutils, curl
 
 ## Installation
 
 1. Install the repo with:
 
-```bash
-curl -fsSL https://raw.githubusercontent.com/cauethenorio/dotfiles/main/remote-install.sh | bash
-```
+    ```bash
+    curl -fsSL https://raw.githubusercontent.com/cauethenorio/dotfiles/main/remote-install.sh | bash
+    ```
 
-Now you can chdir to the repo dir:
-```bash
-cd ~/dev/dotfiles
-```
+2. Now you can chdir to the repo dir and choose what to install of all [listed above](#packages-overview) by using the `make` command:
+    ```bash
+    cd ~/dev/dotfiles
+    make
 
-And install everything [listed above](#packages-overview) with:
-```bash
-make install
-```
+    make list           list all available commands
+    make install        install everything
+    make core-macos     install core tools as brew, git and fish shell
+    make brew           install homebrew
+    make git            install git
+    make fish           install fish shell, oh-my-fish framework and bobthefish theme
+    make bash-config    Configure the bash shell with the paths for the installed tools
+    make asdf           install asdf
+    make python         install three latest python versions
+    make node           install two latest LTS node versions
+    make rust           install rust
+    make packages       install brew, cask, rust and pipx packages
+    make brew-packages  install brew packages
+    make cask-apps      install cask apps
+    make rust-packages  install rust packages
+    make pipx-packages  install python pipx packages
+    ```
 
-Or choose what to install by running:
-```bash
-make
-```
+### TLDR: Use `make install` to install everything
 
-It will list all available options:
-```
-make list           list all available commands
-make install        install everything
-make core-macos     install core tools as brew, git and fish shell
-make brew           install homebrew
-make git            install git
-make fish           install fish shell, oh-my-fish framework and bobthefish theme
-make asdf           install asdf
-make python         install three latest python versions
-make node           install two latest LTS node versions
-make rust           install rust
-make packages       install brew, cask, rust and pipx packages
-make brew-packages  install brew packages
-make cask-apps      install cask apps
-make rust-packages  install rust packages
-make pipx-packages  install python pipx packages
-```
+## TODO
+
+- Setup iterm2
+- Setup dock
 
 
 ## Credits

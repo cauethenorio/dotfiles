@@ -25,6 +25,11 @@ cask "qlmarkdown"
 cask "quicklook-json"
 cask "qlimagesize"
 cask "suspicious-package"
+
+# Mac Apps inspector
+# https://www.mothersruin.com/software/Apparency/
 cask "apparency"
+
+
 cask "quicklookase"
 cask "qlvideo"

@@ -2,7 +2,6 @@
 # https://asdf-vm.com/
 brew "asdf"
 
-
 brew "autojump"
 brew "coreutils"
 brew "curl"

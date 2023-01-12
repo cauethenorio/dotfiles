@@ -34,7 +34,7 @@ install: .sudo core-macos python node rust packages
 
 
 #: install core tools as brew, git and fish shell
-core-macos: brew git fish
+core-macos: brew git fish bash-config
 
 
 #: install homebrew
@@ -81,6 +81,11 @@ fish: .sudo git brew .stow
 		fish $(OMF_INSTALL_FILE) --noninteractive --yes; \
 	fi
 
+
+#: Configure the bash shell with the paths for the installed tools
+bash-config:
+	@log section "Setting up bash..."
+	@link-config "bash"
 
 #: install asdf
 asdf:
