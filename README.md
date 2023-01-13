@@ -14,6 +14,7 @@ Take anything you want, but at your own risk.
 
 ## What you'll get:
 
+- 💬 [iTerm2](https://iterm2.com/) terminal emulator configured with hotkey (^`) to toggle visibility (quake mode)
 - 🐠 [Fish Shell](https://fishshell.com/)
   - Configured with [sane defaults](./config/fish/.config/fish/config.fish) and set as default shell
   - [Oh-my-fish framework](https://github.com/oh-my-fish/oh-my-fish)
@@ -23,9 +24,9 @@ Take anything you want, but at your own risk.
   - The three latest versions of Python, managed by [asdf](https://asdf-vm.com/)
   - [Pipx](https://github.com/pypa/pipx) package runner (with some packages: [pipx-libs.txt](./install/pipx-libs.txt))
   - [Poetry](https://python-poetry.org/) dependency and package manager, managed by [Pipx](https://github.com/pypa/pipx) due [this issue](https://github.com/python-poetry/install.python-poetry.org/issues/24)
-- 🦏 Latest two [Node.js](https://nodejs.org/en/) LTS versions, managed by [asdf](https://asdf-vm.com/)
-- 🤘 Latest [Rust](https://www.rust-lang.org/), managed by [Homebrew](https://brew.sh) (packages: [Rustfile](./install/Rustfile))
-- 🦄 Latest [Golang](https://go.dev/), managed by [Homebrew](https://brew.sh)
+- 🦏 The latest two [Node.js](https://nodejs.org/en/) LTS versions, managed by [asdf](https://asdf-vm.com/)
+- 🤘 The latest [Rust](https://www.rust-lang.org/), managed by [Homebrew](https://brew.sh) (packages: [Rustfile](./install/Rustfile))
+- 🦄 The latest [Golang](https://go.dev/), managed by [Homebrew](https://brew.sh)
 - 🍺 [Homebrew](https://brew.sh) (packages: [Brewfile](./install/Brewfile))
 - 📱 [homebrew-cask](https://github.com/Homebrew/homebrew-cask) (packages: [Caskfile](./install/Caskfile))
 - 🔨 Bash shell [configured with the paths for the installed tools](./config/bash/.bash_profile), required by tools like PyCharm
@@ -39,7 +40,7 @@ Take anything you want, but at your own risk.
     curl -fsSL https://raw.githubusercontent.com/cauethenorio/dotfiles/main/remote-install.sh | bash
     ```
 
-2. Now you can chdir to the repo dir and choose what to install of all [listed above](#packages-overview) by using the `make` command:
+2. Now you can chdir to the repo dir and choose what to install of all [listed above](#what-youll-get-) by using the `make` command:
     ```bash
     cd ~/dev/dotfiles
     make
@@ -66,7 +67,6 @@ Take anything you want, but at your own risk.
 
 ## TODO
 
-- Setup iterm2
 - Setup dock
 
 

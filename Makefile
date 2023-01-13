@@ -154,6 +154,8 @@ iterm2: brew
 	@link-config "iterm2"
 	@defaults write com.googlecode.iterm2 "LoadPrefsFromCustomFolder" -bool true
 	@defaults write com.googlecode.iterm2 "PrefsCustomFolder" -string "$(XDG_CONFIG_HOME)/iterm2"
+	@open -a "/Applications/iTerm.app"
+	@osascript -e 'tell application "System Events" to make login item at end with properties {name: "iTerm2", path:"/Applications/iTerm.app", hidden:false}'
 
 
 #: install brew, cask, rust and pipx packages
