@@ -2,7 +2,7 @@
 
 HOMEBREW_PREFIX=${2:-$(brew --prefix)}
 
-if [ -d "${HOMEBREW_PREFIX}/Cellar/$1" ]; then
+if [ -d "${HOMEBREW_PREFIX}/Cellar/$1" ] || [ -d "${HOMEBREW_PREFIX}/Caskroom/$1" ]; then
   exit 0
 else
   exit 1

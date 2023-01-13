@@ -147,6 +147,15 @@ rust: brew
 	@rustup-init --no-modify-path -y
 
 
+#: install and configure iterm2
+iterm2: brew
+	@log section "Installing and setting up iTerm2..."
+	@is-brew-formula-installed "iterm2" "$(HOMEBREW_PREFIX)" || brew install "iterm2"
+	@link-config "iterm2"
+	@defaults write com.googlecode.iterm2 "LoadPrefsFromCustomFolder" -bool true
+	@defaults write com.googlecode.iterm2 "PrefsCustomFolder" -string "$(XDG_CONFIG_HOME)/iterm2"
+
+
 #: install brew, cask, rust and pipx packages
 packages: brew-packages cask-apps rust-packages pipx-packages
 
