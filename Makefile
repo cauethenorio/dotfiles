@@ -119,7 +119,8 @@ python: asdf brew
 	@source $$(brew --prefix asdf)/libexec/asdf.sh && (is-executable pipx || pip install pipx);
 
 	@log "Installing python poetry..."
-	@source $$(brew --prefix asdf)/libexec/asdf.sh && pipx install poetry;
+	@source $$(brew --prefix asdf)/libexec/asdf.sh && PATH=$$PATH:~/.local/bin pipx install poetry;
+	@mkdir -p $(XDG_CONFIG_HOME)/fish/completions/
 	@PATH=$$PATH:~/.local/bin poetry completions fish > $(XDG_CONFIG_HOME)/fish/completions/poetry.fish
 
 
