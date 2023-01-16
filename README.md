@@ -1,7 +1,8 @@
 # .files
 
 These are my dotfiles for macOS systems.
-Take anything you want, but at your own risk.
+
+
 
 ## Highlights
 
@@ -30,6 +31,7 @@ Take anything you want, but at your own risk.
 - 🍺 [Homebrew](https://brew.sh) (packages: [Brewfile](./install/Brewfile))
 - 📱 [homebrew-cask](https://github.com/Homebrew/homebrew-cask) (packages: [Caskfile](./install/Caskfile))
 - 🔨 Bash shell [configured with the paths for the installed tools](./config/bash/.bash_profile), required by tools like PyCharm
+- 🧼 Decluttered macOS Dock. Only: Launchpad, Chrome, System Preferences, and Downloads
 - 🧩 Latest Git, GNU coreutils, curl
 
 ## Installation

@@ -30,7 +30,7 @@ list:
 
 
 #: install everything
-install: .sudo core-macos python node rust packages
+install: .sudo core-macos python node rust packages clean-dock
 
 
 #: install core tools as brew, git and fish shell
@@ -157,6 +157,9 @@ iterm2: brew
 	@open -a "/Applications/iTerm.app"
 	@osascript -e 'tell application "System Events" to make login item at end with properties {name: "iTerm2", path:"/Applications/iTerm.app", hidden:false}'
 
+
+clean-dock:
+	@./macos/clean-dock.sh
 
 #: install brew, cask, rust and pipx packages
 packages: brew-packages cask-apps rust-packages pipx-packages
