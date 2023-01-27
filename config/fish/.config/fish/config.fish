@@ -1,3 +1,7 @@
+# no greeting message, thank you
+set fish_greeting
+
+
 # bobthefish theme options
 # https://github.com/oh-my-fish/theme-bobthefish
 
