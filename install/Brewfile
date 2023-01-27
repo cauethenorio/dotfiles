@@ -10,6 +10,16 @@ brew "fish"
 brew "fswatch"
 brew "golang"
 brew "jq"
+
+
+# Utility to optimize JPEG files
+# https://github.com/tjko/jpegoptim
+brew "jpegoptim"
+
+# PNG file optimizer
+# https://optipng.sourceforge.net/
+brew "optipng"
+
 brew "readline"
 brew "rsync"
 brew "rustup"
