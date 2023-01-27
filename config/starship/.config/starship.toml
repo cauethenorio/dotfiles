@@ -89,6 +89,13 @@ disabled = true
 [shlvl]
 disabled = true
 
+[status]
+style = 'bg:red'
+symbol = '✗'
+format = '[$symbol $signal_name$status]($style) '
+map_symbol = true
+disabled = false
+
 [swift]
 disabled = true
 
