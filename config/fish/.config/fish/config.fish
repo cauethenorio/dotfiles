@@ -86,3 +86,8 @@ set -x GOPATH ~/dev/golang
 # pipx
 
 [ -d ~/.local/bin ]; and fish_add_path --path ~/.local/bin
+
+
+# starship prompt
+
+which -s starship; and starship init fish | source

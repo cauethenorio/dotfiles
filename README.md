@@ -18,8 +18,8 @@ These are my dotfiles for macOS systems.
 - 💬 [iTerm2](https://iterm2.com/) terminal emulator configured with hotkey (^`) to toggle visibility (quake mode)
 - 🐠 [Fish Shell](https://fishshell.com/)
   - Configured with [sane defaults](./config/fish/.config/fish/config.fish) and set as default shell
-  - [Oh-my-fish framework](https://github.com/oh-my-fish/oh-my-fish)
-  - [bobthefish theme](https://github.com/oh-my-fish/theme-bobthefish)
+  - [Oh-my-fish](https://github.com/oh-my-fish/oh-my-fish) framework
+  - [Starship](https://starship.rs/) as shell prompt
 - [asdf](https://asdf-vm.com/) language/tool version manager
 - 🐍 [Python](https://www.python.org/)
   - The three latest versions of Python, managed by [asdf](https://asdf-vm.com/)

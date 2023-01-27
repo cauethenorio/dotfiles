@@ -34,7 +34,7 @@ install: .sudo core-macos python node rust packages clean-dock
 
 
 #: install core tools as brew, git and fish shell
-core-macos: brew git fish bash-config
+core-macos: brew git fish starship-prompt bash-config
 
 
 #: install homebrew
@@ -80,6 +80,12 @@ fish: .sudo git brew .stow
 		curl -fsSL https://get.oh-my.fish -o $(OMF_INSTALL_FILE); \
 		fish $(OMF_INSTALL_FILE) --noninteractive --yes; \
 	fi
+
+
+starship-prompt: fish
+	@log section "Installing starship shell prompt..."
+	@link-config "starship"
+	@is-executable starship || brew install starship
 
 
 #: Configure the bash shell with the paths for the installed tools
