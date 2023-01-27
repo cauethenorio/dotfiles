@@ -17,7 +17,7 @@ export ACCEPT_EULA=Y
 
 .stow: brew
 	@log section "Ensuring stow is installed..."
-	@is-executable stow || brew install stow
+	@which -s stow || brew install stow
 
 
 #: list all available commands
@@ -40,14 +40,14 @@ core-macos: brew git fish starship-prompt bash-config
 #: install homebrew
 brew:
 	@log section "Ensuring brew is installed..."
-	@is-executable brew || curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh | bash
+	@which -s brew || curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh | bash
 
 
 #: install git
 git: brew .stow
 	@log section "Ensuring git is installed..."
 	@link-config "git"
-	@is-executable git || brew install git git-extras
+	@which -s git || brew install git git-extras
 
 
 #: install fish shell, oh-my-fish framework and bobthefish theme
@@ -61,7 +61,7 @@ fish: .sudo git brew .stow
 	@link-config "fish"
 
 	@log "Ensuring fish shell is installed..."
-	@is-executable fish || brew install fish
+	@which -s fish || brew install fish
 
 	@log "Ensuring fish shell is available in shells list..."
 	@grep -qxF "$(FISH_BIN)" "$(SHELLS)" || echo "$(FISH_BIN)" | sudo tee -a "$(SHELLS)" > /dev/null
@@ -85,7 +85,7 @@ fish: .sudo git brew .stow
 starship-prompt: fish
 	@log section "Installing starship shell prompt..."
 	@link-config "starship"
-	@is-executable starship || brew install starship
+	@which -s starship || brew install starship
 
 
 #: Configure the bash shell with the paths for the installed tools
@@ -96,7 +96,7 @@ bash-config:
 #: install asdf
 asdf:
 	@log section "Installing asdf..."
-	@is-executable asdf || brew install asdf
+	@which -s asdf || brew install asdf
 
 
 #: install three latest python versions
@@ -122,7 +122,7 @@ python: asdf brew
 		asdf global python $$LATEST_PY;
 
 	@log "Installing pipx..."
-	@source $$(brew --prefix asdf)/libexec/asdf.sh && (is-executable pipx || pip install pipx);
+	@source $$(brew --prefix asdf)/libexec/asdf.sh && (which -s pipx || pip install pipx);
 
 	@log "Installing python poetry..."
 	@source $$(brew --prefix asdf)/libexec/asdf.sh && PATH=$$PATH:~/.local/bin pipx install poetry;
@@ -136,7 +136,7 @@ node: asdf
 	@asdf plugin list | grep -q nodejs || asdf plugin add nodejs
 
 	@NODE_VERSIONS="$$(asdf list all nodejs lts-| uniq | tail -n2 | xargs)"; \
-	log "Installing Node.js versions $$PY_VERSIONS..."; \
+	log "Installing Node.js versions $$NODE_VERSIONS..."; \
 	for NODE_VERSION in $${NODE_VERSIONS[@]}; do \
   	asdf install nodejs latest:$$NODE_VERSION; \
 	done
@@ -149,7 +149,7 @@ node: asdf
 #: install rust
 rust: brew
 	@log section "Installing rust..."
-	@brew install rustup
+	@which -s rustup || brew install rustup
 	@rustup-init --no-modify-path -y
 
 
