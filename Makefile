@@ -2,11 +2,11 @@ SHELL = /bin/bash
 OS := $(shell bin/is-supported bin/is-macos macos linux)
 DOTFILES_DIR := $(shell dirname $(realpath $(firstword $(MAKEFILE_LIST))))
 HOMEBREW_PREFIX := $(shell bin/is-supported bin/is-arm64 /opt/homebrew /usr/local)
-PATH := $(HOMEBREW_PREFIX)/bin:$(DOTFILES_DIR)/bin:$(PATH)
+export PATH := $(HOMEBREW_PREFIX)/bin:$(DOTFILES_DIR)/bin:$(PATH)
 export XDG_CONFIG_HOME = $(HOME)/.config
 export ACCEPT_EULA=Y
 
-.PHONY: test
+.PHONY: test rust
 
 
 .sudo:
@@ -149,8 +149,8 @@ node: asdf
 #: install rust
 rust: brew
 	@log section "Installing rust..."
-	@which -s rustup || brew install rustup
-	@rustup-init --no-modify-path -y
+	@which -s rustup-init || brew install rustup
+	@which -s rustup-init && rustup-init --no-modify-path -y
 
 
 #: install and configure iterm2
