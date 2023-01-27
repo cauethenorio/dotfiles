@@ -16,14 +16,14 @@ export LC_ALL=en_US.UTF-8
 export GPG_TTY=$(tty)
 
 
-# get brew prefix once
+# set PATH, MANPATH, etc., for Homebrew
+
+[ -f /opt/homebrew/bin/brew ] && eval $(/opt/homebrew/bin/brew shellenv)
+[ -f /usr/local/bin/brew ] && eval $(/usr/local/bin/brew shellenv)
 
 brew_prefix=$(brew --prefix)
-
-
-# homebrew installed executables
-
 export PATH="$brew_prefix/sbin:$PATH"
+
 
 
 # load autojump (if installed)

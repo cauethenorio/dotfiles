@@ -33,13 +33,12 @@ set -x LC_ALL en_US.UTF-8
 set -x GPG_TTY (tty)
 
 
-# get brew prefix once
+# set PATH, MANPATH, etc., for Homebrew
+
+[ -f /opt/homebrew/bin/brew ]; and eval (/opt/homebrew/bin/brew shellenv)
+[ -f /usr/local/bin/brew ]; and eval (/usr/local/bin/brew shellenv)
 
 set brew_prefix (brew --prefix)
-
-
-# homebrew installed executables
-
 fish_add_path --prepend --path {$brew_prefix}/sbin
 
 
