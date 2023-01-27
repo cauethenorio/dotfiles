@@ -165,6 +165,7 @@ iterm2: brew
 
 
 clean-dock:
+	@log section "Cleaning Dock..."
 	@./macos/clean-dock.sh
 
 #: install brew, cask, rust and pipx packages
