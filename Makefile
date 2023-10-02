@@ -30,7 +30,7 @@ list:
 
 
 #: install everything
-install: .sudo core-macos python node rust packages clean-dock
+install: .sudo core-macos python node rust packages clean-dock iterm2
 
 
 #: install core tools as brew, git and fish shell
@@ -194,3 +194,13 @@ rust-packages: rust
 pipx-packages: python
 	@source $$(brew --prefix asdf)/libexec/asdf.sh; \
 	cat ./install/pipx-libs.txt | PATH=$$PATH:~/.local/bin xargs -n1 pipx install;
+
+
+#: create SSH key if there is none
+ssh-key:
+	@log section "Ensuring a SSH key exists..."
+	@if ! ls ~/.ssh/id_* 1> /dev/null 2>&1; then \
+		log section "SSH key not found. Creating..."; \
+		ssh-keygen -t ed25519 -C "$$(whoami)@$$(hostname)" -f ~/.ssh/id_ed25519; \
+		ssh-add --apple-use-keychain; \
+	fi;

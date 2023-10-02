@@ -77,18 +77,18 @@ end
 # golang
 
 set -x GOPATH ~/dev/golang
-[ -d $GOPATH/bin ]; and fish_add_path --path $GOPATH/bin
+fish_add_path --path $GOPATH/bin
 
 
 # rust
 
 # Prepending path in case a system-installed rustc needs to be overridden
-[ -d ~/.cargo/bin ]; and fish_add_path --prepend --path ~/.cargo/bin
+fish_add_path --prepend --path ~/.cargo/bin
 
 
 # pipx
 
-[ -d ~/.local/bin ]; and fish_add_path --path ~/.local/bin
+fish_add_path --path ~/.local/bin
 
 
 # starship prompt

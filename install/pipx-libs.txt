@@ -1,3 +1,4 @@
 cookiecutter
 httpie
 poetry
+https://github.com/aws/aws-cli.git@2.10.2

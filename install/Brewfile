@@ -2,12 +2,21 @@
 # https://asdf-vm.com/
 brew "asdf"
 
+# Official Amazon AWS command-line interface
+# https://aws.amazon.com/cli/
+brew "awscli"
+
 brew "autojump"
 brew "coreutils"
 brew "curl"
 brew "diff-so-fancy"
 brew "fish"
 brew "fswatch"
+brew "git"
+
+# Syntax-highlighting pager for git and diff output
+# https://github.com/dandavison/delta
+brew "git-delta"
 brew "golang"
 brew "jq"
 

@@ -15,6 +15,10 @@ cask "google-chrome"
 cask "iterm2"
 cask "itsycal"
 cask "maccy"
+
+# Reverse proxy, secure introspectable tunnels to localhost (https://ngrok.com/)
+cask "ngrok"
+
 cask "pycharm"
 cask "visual-studio-code"
 
@@ -24,6 +28,13 @@ cask "qlstephen"
 cask "qlmarkdown"
 cask "quicklook-json"
 cask "qlimagesize"
+
+# Animated screen capture application (https://www.cockos.com/licecap/)
+cask "licecap"
+
+# Text editor for code, markup and prose (https://www.sublimetext.com/)
+cask "sublime-text"
+
 cask "suspicious-package"
 
 # Mac Apps inspector

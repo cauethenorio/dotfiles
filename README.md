@@ -70,8 +70,8 @@ These are my dotfiles for macOS systems.
 ## TODO
 
 - Setup dock (https://github.com/webpro/dotfiles/blob/master/macos/dock.sh)
-- Try https://github.com/caarlos0/dotfiles.fish
-
+- Explore https://github.com/caarlos0/dotfiles.fish
+- Maybe replace `asdf` with https://github.com/jdxcode/rtx
 
 ## Credits
 
