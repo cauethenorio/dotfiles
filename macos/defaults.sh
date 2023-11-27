@@ -1,4 +1,4 @@
-COMPUTER_NAME="Neo"
+COMPUTER_NAME="silverplate"
 
 # Topics
 #
@@ -42,15 +42,22 @@ sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.serve
 defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode -bool true
 defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode2 -bool true
 
+# Show list view in save panel by default
+defaults write NSGlobalDomain NSNavPanelFileListModeForSaveMode2 -int 2
+defaults write NSGlobalDomain NavPanelFileListModeForSaveMode -int 2
+defaults write NSGlobalDomain NSNavPanelFileLastListModeForSaveModeKey -int 2
+
+# Show list view in open panel by default
+defaults write NSGlobalDomain NSNavPanelFileListModeForOpenMode2 -int 2
+defaults write NSGlobalDomain NavPanelFileListModeForOpenMode -int 2
+defaults write NSGlobalDomain NSNavPanelFileLastListModeForOpenModeKey -int 2
+
 # Expand print panel by default
 defaults write NSGlobalDomain PMPrintingExpandedStateForPrint -bool true
 defaults write NSGlobalDomain PMPrintingExpandedStateForPrint2 -bool true
 
 # Save to disk (not to iCloud) by default
 defaults write NSGlobalDomain NSDocumentSaveNewDocumentsToCloud -bool false
-
-# Automatically quit printer app once the print jobs complete
-defaults write com.apple.print.PrintingPrefs "Quit When Finished" -bool true
 
 # Disable the “Are you sure you want to open this application?” dialog
 defaults write com.apple.LaunchServices LSQuarantine -bool false
@@ -81,7 +88,7 @@ defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
 
 # Set a blazingly fast keyboard repeat rate
 defaults write NSGlobalDomain KeyRepeat -int 1
-defaults write NSGlobalDomain InitialKeyRepeat -int 15
+defaults write NSGlobalDomain InitialKeyRepeat -int 1
 
 # Disable auto-correct
 defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
@@ -94,10 +101,8 @@ defaults write com.apple.AppleMultitouchTrackpad Dragging -bool false
 defaults write com.apple.AppleMultitouchTrackpad TrackpadThreeFingerDrag -bool true
 defaults write com.apple.AppleMultitouchTrackpad TrackpadThreeFingerVertSwipeGesture -bool false
 defaults write com.apple.AppleMultitouchTrackpad TrackpadThreeFingerHorizSwipeGesture -bool false
-defaults write "com.apple.AppleMultitouchTrackpad" "Dragging" -bool false
 defaults write "com.apple.driver.AppleBluetoothMultitouch.trackpad" "TrackpadThreeFingerDrag" -bool true
 defaults write "com.apple.driver.AppleBluetoothMultitouch.trackpad" "Dragging" -bool true
-defaults write "com.apple.AppleMultitouchTrackpad" "Dragging" -bool true
 defaults write "com.apple.AppleMultitouchTrackpad" "Dragging" -bool false
 defaults write "com.apple.driver.AppleBluetoothMultitouch.trackpad" "Dragging" -bool false
 
