@@ -93,16 +93,15 @@ bash-config:
 	@log section "Setting up bash..."
 	@link-config "bash"
 
-#: install asdf
-asdf:
-	@log section "Installing asdf..."
-	@which -s asdf || brew install asdf
+#: install rtx (replace asdf)
+rtx: python-deps
+	@log section "Installing rtx..."
+	@which -s rtx || brew install jdx/tap/rtx
+	@link-config "rtx"
+	@rtx install
 
-
-#: install three latest python versions
-python: asdf brew
-	@log section "Installing python versions..."
-
+#: install python build dependencies
+python-deps: rtx brew
 	@log "Ensuring python build dependencies are installed..."
 	@# obtained from Homebrew's python formulas
 	@PY_DEPS=("mpdecimal" "openssl@1.1" "sqlite" "xz" "gdbm" "readline"); \
@@ -110,40 +109,23 @@ python: asdf brew
 	  is-brew-formula-installed "$$DEP" "$(HOMEBREW_PREFIX)" || brew install "$$DEP"; \
 	done
 
-	@log "Adding python plugin to asdf..."
-	@asdf plugin list | grep -q python || asdf plugin add python
-	@PY_VERSIONS="$$(asdf list all python 3|grep -v dev| grep -v 'a' | sed 's/\.[0-9]*$$//' | uniq | tail -n3 | xargs)"; \
-	log "Installing python versions $$PY_VERSIONS..."; \
-	for PY_VERSION in $${PY_VERSIONS[@]}; do \
-  	asdf install python latest:$$PY_VERSION; \
-	done
-	@LATEST_PY=$$(asdf list python| sort -V | tail -n1 | tr -d ' ' | tr -d '*'); \
-		log "Python $$LATEST_PY set as global"; \
-		asdf global python $$LATEST_PY;
-
+python-pip: rtx
 	@log "Installing pipx..."
-	@source $$(brew --prefix asdf)/libexec/asdf.sh && (which -s pipx || pip install pipx);
+	@source <(echo "$$($$(brew --prefix rtx)/bin/rtx activate bash)") && rtx
+	#@source $$(brew --prefix rtx)/bin/rtx activate bash && (which -s pipx || pip install pipx);
 
+python-poetry: rtx
 	@log "Installing python poetry..."
-	@source $$(brew --prefix asdf)/libexec/asdf.sh && PATH=$$PATH:~/.local/bin pipx install poetry;
+	@source $$("$$(brew --prefix rtx)/bin/rtx activate bash") && PATH=$$PATH:~/.local/bin pipx install poetry;
 	@mkdir -p $(XDG_CONFIG_HOME)/fish/completions/
 	@PATH=$$PATH:~/.local/bin poetry completions fish > $(XDG_CONFIG_HOME)/fish/completions/poetry.fish
 
+#: install python, pipx and poetry
+python: python-deps rtx python-pip python-poetry
 
-#: install two latest LTS node versions
-node: asdf
-	@log section "Installing node runtimes..."
-	@asdf plugin list | grep -q nodejs || asdf plugin add nodejs
 
-	@NODE_VERSIONS="$$(asdf list all nodejs lts-| uniq | tail -n2 | xargs)"; \
-	log "Installing Node.js versions $$NODE_VERSIONS..."; \
-	for NODE_VERSION in $${NODE_VERSIONS[@]}; do \
-  	asdf install nodejs latest:$$NODE_VERSION; \
-	done
-
-	@LATEST_NODE=$$(asdf list nodejs| sort -V | tail -n1 | tr -d ' ' | tr -d '*'); \
-		log "Node $$LATEST_NODE set as global"; \
-		asdf global nodejs $$LATEST_NODE;
+#: install node
+node: rtx
 
 
 #: install rust

@@ -58,9 +58,11 @@ for script in {$brew_prefix}/share/fish/vendor_completions.d/*.fish
 end
 
 
-# enable asdf (languages versions manager) if installed
+# enable rtx (languages versions manager) if installed
 
-[ -f {$brew_prefix}/opt/asdf/libexec/asdf.fish ]; and source {$brew_prefix}/opt/asdf/libexec/asdf.fish
+if type -q rtx
+    rtx activate fish | source
+end
 
 
 # android

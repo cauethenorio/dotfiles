@@ -1,0 +1,3 @@
+[tools]
+python = ['latest', 'sub-0.1:latest', 'sub-0.2:latest', 'sub-0.3:latest', 'sub-0.4:latest', 'sub-0.5:latest']
+node = ['lts', 'latest']

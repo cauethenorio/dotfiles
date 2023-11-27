@@ -33,11 +33,9 @@ if [ -f "${brew_prefix}/share/autojump/autojump.bash" ]; then
 fi
 
 
-# enable asdf (languages versions manager) if installed
+# enable rtx (languages versions manager) if installed
+command -v rtx >/dev/null 2>&1 && eval "$(rtx activate bash)"
 
-if [ -f "${brew_prefix}/opt/asdf/libexec/asdf.sh" ]; then
-  source "${brew_prefix}/opt/asdf/libexec/asdf.sh"
-fi
 
 
 # golang
