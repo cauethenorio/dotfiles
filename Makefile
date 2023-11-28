@@ -101,7 +101,7 @@ rtx: python-deps
 	@rtx install
 
 #: install python build dependencies
-python-deps: rtx brew
+python-deps: brew
 	@log "Ensuring python build dependencies are installed..."
 	@# obtained from Homebrew's python formulas
 	@PY_DEPS=("mpdecimal" "openssl@1.1" "sqlite" "xz" "gdbm" "readline"); \
@@ -111,12 +111,11 @@ python-deps: rtx brew
 
 python-pip: rtx
 	@log "Installing pipx..."
-	@source <(echo "$$($$(brew --prefix rtx)/bin/rtx activate bash)") && rtx
-	#@source $$(brew --prefix rtx)/bin/rtx activate bash && (which -s pipx || pip install pipx);
+	@source <(echo "$$($$(brew --prefix rtx)/bin/rtx activate bash)") && (which -s pipx || pip install pipx)
 
 python-poetry: rtx
 	@log "Installing python poetry..."
-	@source $$("$$(brew --prefix rtx)/bin/rtx activate bash") && PATH=$$PATH:~/.local/bin pipx install poetry;
+	@source <(echo "$$($$(brew --prefix rtx)/bin/rtx activate bash)") && PATH=$$PATH:~/.local/bin pipx install poetry;
 	@mkdir -p $(XDG_CONFIG_HOME)/fish/completions/
 	@PATH=$$PATH:~/.local/bin poetry completions fish > $(XDG_CONFIG_HOME)/fish/completions/poetry.fish
 
@@ -174,7 +173,7 @@ rust-packages: rust
 
 #: install python pipx packages
 pipx-packages: python
-	@source $$(brew --prefix asdf)/libexec/asdf.sh; \
+	@source <(echo "$$($$(brew --prefix rtx)/bin/rtx activate bash)"); \
 	cat ./install/pipx-libs.txt | PATH=$$PATH:~/.local/bin xargs -n1 pipx install;
 
 
