@@ -11,6 +11,10 @@ cask "dropbox"
 cask "firefox"
 cask "font-fira-code"
 cask "font-hack"
+
+# Typeface made for developers (https://www.jetbrains.com/lp/mono)
+cask "font-jetbrains-mono"
+
 cask "google-chrome"
 cask "iterm2"
 cask "itsycal"
