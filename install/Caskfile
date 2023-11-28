@@ -32,6 +32,9 @@ cask "qlstephen"
 cask "qlmarkdown"
 cask "quicklook-json"
 cask "qlimagesize"
+cask "qlvideo"
+cask "suspicious-package"
+cask "apparency" # Mac Apps inspector (https://www.mothersruin.com/software/Apparency/)
 
 # Animated screen capture application (https://www.cockos.com/licecap/)
 cask "licecap"
@@ -39,12 +42,5 @@ cask "licecap"
 # Text editor for code, markup and prose (https://www.sublimetext.com/)
 cask "sublime-text"
 
-cask "suspicious-package"
-
-# Mac Apps inspector
-# https://www.mothersruin.com/software/Apparency/
-cask "apparency"
-
-
-cask "quicklookase"
-cask "qlvideo"
+# Move and resize windows using keyboard shortcuts or snap areas (https://rectangleapp.com/)
+cask "rectangle"

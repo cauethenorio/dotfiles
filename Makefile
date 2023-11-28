@@ -30,7 +30,7 @@ list:
 
 
 #: install everything
-install: .sudo core-macos python node rust packages clean-dock iterm2
+install: .sudo core-macos python node rust packages rectangle-config clean-dock iterm2
 
 
 #: install core tools as brew, git and fish shell
@@ -148,6 +148,11 @@ iterm2: brew
 clean-dock:
 	@log section "Cleaning Dock..."
 	@./macos/clean-dock.sh
+
+rectangle-config:
+	@log section "Configuring Rectangle..."
+	@link-config "rectangle"
+
 
 #: install brew, cask, rust and pipx packages
 packages: brew-packages cask-apps rust-packages pipx-packages
