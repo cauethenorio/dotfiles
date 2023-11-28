@@ -11,21 +11,21 @@ These are my dotfiles for macOS systems.
 - Updated macOS defaults
 - Well-organized and easy to customize
 - Supports both Apple Silicon (M1) and Intel chips
-- Tested on Ventura 13.1
+- Tested on Sonoma 14.1
 
 ## What you'll get:
 
 - 💬 [iTerm2](https://iterm2.com/) terminal emulator configured with hotkey (^`) to toggle visibility (quake mode)
 - 🐠 [Fish Shell](https://fishshell.com/)
-  - Configured with [sane defaults](./config/fish/.config/fish/config.fish) and set as default shell
+  - Configured as default shell with [sane defaults](./config/fish/.config/fish/config.fish)
   - [Oh-my-fish](https://github.com/oh-my-fish/oh-my-fish) framework
-  - [Starship](https://starship.rs/) as shell prompt
-- [asdf](https://asdf-vm.com/) language/tool version manager
+  - [🚀 Starship](https://starship.rs/) as shell prompt
+- [rtx](https://github.com/jdx/rtx) language/tool version manager
 - 🐍 [Python](https://www.python.org/)
-  - The three latest versions of Python, managed by [asdf](https://asdf-vm.com/)
+  - The five latest versions of Python, managed by [rtx](https://github.com/jdx/rtx)
   - [Pipx](https://github.com/pypa/pipx) package runner (with some packages: [pipx-libs.txt](./install/pipx-libs.txt))
   - [Poetry](https://python-poetry.org/) dependency and package manager, managed by [Pipx](https://github.com/pypa/pipx) due [this issue](https://github.com/python-poetry/install.python-poetry.org/issues/24)
-- 🦏 The latest two [Node.js](https://nodejs.org/en/) LTS versions, managed by [asdf](https://asdf-vm.com/)
+- 🦏 The latest two [Node.js](https://nodejs.org/en/) LTS versions, managed by [rtx](https://github.com/jdx/rtx)
 - 🤘 The latest [Rust](https://www.rust-lang.org/), managed by [Homebrew](https://brew.sh) (packages: [Rustfile](./install/Rustfile))
 - 🦄 The latest [Golang](https://go.dev/), managed by [Homebrew](https://brew.sh)
 - 🍺 [Homebrew](https://brew.sh) (packages: [Brewfile](./install/Brewfile))
@@ -43,7 +43,7 @@ These are my dotfiles for macOS systems.
     ```
 
 2. Now you can chdir to the repo dir and choose what to install of all [listed above](#what-youll-get-) by using the `make` command:
-    ```bash
+    ```
     cd ~/dev/dotfiles
     make
 
